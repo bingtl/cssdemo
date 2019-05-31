@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            position: relative;
+            margin: 80px auto;
+            overflow: hidden;
+        }
+        #cokeBg{
+            /*absolute :
+             脱离文档流，
+             此时元素高度和宽度又 子元素撑开
+            */
+            position: absolute;
+            top:10px;
+            left: 0;
+
+        }
+        #cokeBg img{
+            float: left;
+        }
+        #cokeCan{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+    <!--
+        inline_block :  注释符号
+                父元素 font-size: 0;
+                子元素：浮动 （高度塌陷）
+
+    -->
+</head>
+<body>
+    <div id="wrap">
+        <div id="cokeBg">
+            <img src="./coke_bg.jpg" alt="">
+            <img src="./coke_bg.jpg" alt="">
+        </div>
+        <div id="cokeCan">
+            <img src="./coke_can.png" alt="">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var wrap = document.getElementById('wrap');
+    var cokeCanImg =document.querySelector('#cokeCan img');
+    var cokeBg = document.getElementById('cokeBg');
+    var cokeBgImg = document.querySelectorAll('#cokeBg img');
+
+    var cokeBgImgW = cokeBgImg[0].offsetWidth;
+    var cokeBgImgH = cokeBgImg[0].offsetHeight;
+
+    cokeBg.style.width = cokeBgImgW *2 + 'px';
+    cokeBg.style.height = cokeBgImgH + 'px';
+
+    //offsetWidth = content-box + padding-box + border-box
+    //clientWidth  = content-box + padding-box
+    //box.style.width  赋值操作
+    var canImgW = cokeCanImg.offsetWidth;
+    var canImgH = cokeCanImg.offsetHeight;
+
+    wrap.style.width = canImgW + 'px';
+    wrap.style.height = canImgH + 'px';
+
+    var dis = 0;
+    setInterval(function () {
+        dis--;
+        //处理空白区域
+        if(Math.abs(dis) >= cokeBgImgW){
+            dis = 0;
+        };
+
+        cokeBg.style.transform = 'translateX('+ dis +'px)';
+    },20);
+
+</script>
+</html>

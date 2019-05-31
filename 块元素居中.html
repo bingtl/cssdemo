@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>块元素，行内元素的水平垂直居中</title>
+</head>
+<style>
+div{
+    /* div内的行内元素水平居中 */
+    text-align: center;
+
+    /* div内的行内元素垂直居中（即line-height设置为与height相同） */
+    height: 50px;
+    line-height: 50px;
+}
+
+/* 块级元素 
+    水平居中
+*/
+/* 方案1 */
+div{
+    width: 100px;
+    margin: 0 auto;
+}
+/* 方案二（负边距）
+    当元素左侧没有兄弟元素时可用，
+    缺点是需要事先知道width
+ */
+ div{
+    width: 100px;
+    position: relative;
+    margin-left: -50px;
+    left: 50%;
+ }
+
+/* 方案3（负边距） 
+    当元素左侧没有兄弟元素时可用，
+    优点是不需要事先知道width，
+    缺点是兼容性不好，IE9（-ms-）+才支持
+
+*/
+div{
+    width: 100px;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+/* 方案4（负边距） 
+    流行，
+    缺点是需要事先知道width
+*/
+div{
+    width: 100px;
+    position: absolute;
+    margin-left: -50px;
+    left: 50%;
+}
+/* 方案5 （负边距） 
+    优点是不需要事先知道width
+    缺点是兼容性不好，IE9(-ms-）+才支持
+*/
+div{
+    width: 100px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+/* 方案6 */
+div{
+    width: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 方案七
+    弹性盒子内部会计元素水平居中，
+    优点是不需要知道width
+    缺点是兼容性不好 IE10(-ms-)+才支持
+
+ */
+ div{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+ }
+
+ /* 垂直居中(直接根据父级高度设置margin未算入) */
+
+ /* 方案1（负边距）
+    当元素上侧没有兄弟元素时可用
+  */
+  div{
+      width: 100px;
+      position: relative;
+      top: 50%;
+      margin-top: -50px;
+  }
+  /* 
+  方案2（负边距）：
+    当元素上侧没有兄弟元素时可用
+  
+   */
+   div{
+       width: 100px;
+       position: relative;
+       top: 50%;
+       transform: translateY(-50%);
+   }
+   /* 
+    方案3（负边距）
+    */
+    div{
+        width: 100px;
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+    }
+    /* 
+    方案4（负边距）
+     */
+     div{
+         width: 100px;
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+     }
+     /* 
+     方案5
+      */
+      div{
+          width: 100px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin-top: auto;
+          margin-bottom: auto
+      }
+      /* 
+      方案6
+        弹性盒子内部块级元素垂直居中，
+        优点是不需要知道width，
+        缺点是兼容性不好，IE10（-ms-）+才支持
+       */
+       div{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+</style>
+<body>
+    
+</body>
+</html>

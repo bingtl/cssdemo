@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+.cubic{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+    -webkit-transform: rotateX(-30deg) rotateY(30deg);
+    -moz-transform: rotateX(-30deg) rotateY(30deg);
+    -ms-transform: rotateX(-30deg) rotateY(30deg);
+    transform: rotateX(-30deg) rotateY(30deg);
+    -webkit-transform-origin: 100px 0px;
+    -moz-transform-origin: 100px 0px;
+    -ms-transform-origin: 100px 0px;
+    transform-origin: 100px 0px;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    animation: cubicRotate 5s ease infinite;
+}
+.cubic > span{
+    position: absolute;
+    opacity: 0.6;
+    width: 200px;
+    height: 200px;
+}
+.cubic .before{
+    background: #ff5700;/*橙色*/
+    -webkit-transform: translateZ(100px);
+    -moz-transform: translateZ(100px);
+    -ms-transform: translateZ(100px);
+    transform: translateZ(100px);
+}
+.cubic .after{
+    background: #4359aa;/*蓝色*/
+    -webkit-transform: translateZ(-100px);
+    -moz-transform: translateZ(-100px);
+    -ms-transform: translateZ(-100px);
+    transform: translateZ(-100px);
+}
+.cubic .left{
+    background: #07A168;/*绿色*/
+    -webkit-transform: rotateY(90deg) translateZ(-100px);
+    -moz-transform: rotateY(90deg) translateZ(-100px);
+    -ms-transform: rotateY(90deg) translateZ(-100px);
+    transform: rotateY(90deg) translateZ(-100px);
+}
+.cubic .right{
+    background: #fcf308;/*黄色*/
+    -webkit-transform: rotateY(90deg) translateZ(-100px);
+    -moz-transform: rotateY(90deg) translateZ(-100px);
+    -ms-transform: rotateY(90deg) translateZ(-100px);
+    transform: rotateY(90deg) translateZ(100px);
+}
+.cubic .top{
+    background: #9e00f9;/*紫色*/
+    -webkit-transform: rotateY(90deg) translateZ(-100px);
+    -moz-transform: rotateY(90deg) translateZ(-100px);
+    -ms-transform: rotateY(90deg) translateZ(-100px);
+    transform: rotateX(90deg) translateZ(100px);
+}
+.cubic .bottom{
+    background: #016484;/*青色*/
+    -webkit-transform: rotateY(90deg) translateZ(-100px);
+    -moz-transform: rotateY(90deg) translateZ(-100px);
+    -ms-transform: rotateY(90deg) translateZ(-100px);
+    transform: rotateX(90deg) translateZ(-100px);
+}
+@-webkit-keyframes cubicRotate{ 
+    0%{-webkit-transform:rotateX(-30deg) rotateY(30deg);} 
+    100%{-webkit-transform:rotateX(-30deg) rotateY(800deg);} 
+}
+@-moz-keyframes cubicRotate{ 
+    0%{-moz-transform:rotateX(-30deg) rotateY(30deg);} 
+    100%{-moz-transform:rotateX(-30deg) rotateY(800deg);} 
+}
+@-ms-keyframes cubicRotate{ 
+    0%{-ms-transform:rotateX(-30deg) rotateY(30deg);} 
+    100%{-ms-transform:rotateX(-30deg) rotateY(800deg);} 
+}
+@keyframes cubicRotate{ 
+    0%{transform:rotateX(-30deg) rotateY(30deg);} 
+    100%{transform:rotateX(-30deg) rotateY(800deg);} 
+}
+</style>
+</head>
+<body>
+<div class="cubic">
+    <span class="before"></span>
+    <span class="after"></span>
+    <span class="top"></span>
+    <span class="bottom"></span>
+    <span class="left"></span>
+    <span class="right"></span>
+</div>
+<body>
+</html>
+
+<!-- 原理
+    因为正方体：宽度=长度=高度
+    1 从前后视角看，就是我们正体前面（before）和后面（after），whidth*height=长*高（此处必须按这个顺序对应）；
+        前后视角就和我们平时看到的一张纸，相当于二维面平行，然后将前面在垂直与二维平面的线上来开正方体的宽度和距离
+    2 接下来时左右视角，即正方体的左右面，width*height=宽*高（此处必须按照这个顺序对应）；
+        左右视角相当于我们将与二维平面平行的正方行沿着Y轴旋转90度，然后将左右视角在的平面作为二维平面，
+        同样在与其垂直的线上拉开正方体长度的距离，这样一个简单的正方体完成
+    3 最后是上下视角，即正方体的上下面，width*height=长*宽；
+        上下视角相当于将与二维平面平行的正方形沿着X轴旋转90度，然后将上下视角在的平面作为二维平面，同样在与其
+        垂直的线上拉开正方体高度的距离，
+
+    注意：以上是针对正方体的六个面，即div中的六个span标签
+    div必须设置一下属性
+        transform:rotateX(-30deg) rotateY(30deg);
+        transform-style:preserve-3d
+    注意：
+        transform:rotateX(-30deg)rotateY(30deg)是设置正方体在空间中的角度，相当于你的眼睛定位在某一点
+        然后你旋转各个方向观看
+
+
+-->

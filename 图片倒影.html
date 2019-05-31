@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+img {
+    width: 300px;
+    height: 300px;
+   -webkit-box-reflect: below 0 -webkit-linear-gradient(top, rgba(250, 250, 250, 0), rgba(250, 250, 250, .0) 20%, rgba(250, 250, 250, .3));
+   /* -webkit-box-reflect: below 0 url(./01.jpg); */
+}
+/*第二种方式*/
+.box-reflect {
+    position: relative;
+  width: 150px;
+    float: left;
+    margin-right: 40px;
+}
+.box-reflect img {
+    width: 100%;
+    height: 100%;
+}
+.box-reflect:before {
+    background: url(images/example.jpg) no-repeat;
+    background-size: 100% 100%;
+    transform: scaleY(-1);
+    /*设置半透明增强倒影效果*/
+    opacity: 0.5;
+    filter: alpha(opacity='50');
+}
+.box-reflect:before, .box-reflect:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    left: 0;
+    content: "";
+}
+.box-reflect:after {
+    background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 20%, rgba(0,0,0,0) 90%);
+    background-image: -o-linear-gradient(rgba(0,0,0,0) 10%, rgb(0,0,0) 30%);
+    background-image: -webkit-linear-gradient(bottom,rgb(0,0,0) 20%,rgba(0,0,0,0) 90%);
+    filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColor=0, EndColorStr=#000000);
+}
+</style>
+<body>
+    <img src="./01.jpg" alt="">
+</body>
+<div class="box-reflect">
+    <img src="./01.jpg" alt="">
+</div>
+</html>

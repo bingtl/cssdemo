@@ -1,0 +1,131 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style>  
+#wrap{
+    width: 300px;
+    height: 300px;
+    background: #dedede;
+    margin: 100px auto;
+    position: relative;
+}
+#hour{
+    width: 6px;
+    height: 60px;
+    background: #000;
+    position: absolute;
+    top: 90px;
+    left: 147px;
+
+    /* 旋转基点 */
+    transform-origin: 3px 60px;
+}
+#min{
+    width: 4px;
+    height: 80px;
+    background: #333;
+    position: absolute;
+    top: 70px;
+    left: 148px;
+       /* 旋转基点 */
+       transform-origin: 2px 80px;
+}
+#sec{
+    width: 2px;
+    height: 100px;
+    background: #e55954;
+    position: absolute;
+    top: 50px;
+    left: 149px;
+       /* 旋转基点 */
+       transform-origin: 1px 100px;
+}
+#icon{
+    width: 20px;
+    height: 20px;
+    background: #f5c51c;
+    position: absolute;
+    top: 140px;
+    left: 140px;
+    border-radius: 50%;
+}
+#list{
+    list-style: none;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 0;
+    left: 149px;
+}
+#list li{
+    width: 2px;
+    height: 8px;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 指定变换中心的位置 */
+    transform-origin:1px 150px ;
+}
+/* 每隔五个li加粗 */
+#list li:nth-child(5n+1){
+    width: 4px;
+    height: 12px;
+    background: #e55954;
+    transform-origin:2px 150px ;
+}
+    </style>  
+</head>  
+<body>  
+<div id="wrap">
+    <!-- 刻度 -->
+    <ul id="list"></ul>
+    <div id="hour"></div>
+    <div id="min"></div>
+    <div id="sec"></div>
+    <div id="icon"></div>
+</div>
+</body> 
+<script>
+    var list = document.getElementById('list');
+    //确定li的数量
+    var num = 60;
+
+    for(var i=0; i<num; i++){
+ //   循环出需要的li   createElement 创建  
+        var li = document.createElement('li');
+//给循环出的li添加显示角度
+        li.style.transform = 'rotate('+(6*i)+'deg)';
+// 将循环出的li添加给ul
+        list.appendChild(li);
+    };
+
+
+//获取表盘指针
+    var hourDom = document.getElementById('hour');
+    var minDom = document.getElementById('min');
+    var secDom = document.getElementById('sec');
+
+//表盘指针运动
+    setInterval(function(){
+//定义时间变量
+        var date = new Date();
+//拿到相应的时间 秒
+        var sec = date.getSeconds();
+// 分
+        var min = date.getMinutes();
+    //分钟指针跟随时间移动
+        min = min + sec/60;
+// 时
+        var hour = date.getHours();
+        hour = hour + min/60;
+
+//给指针添加每一次移动的度数
+        secDom.style.transform = 'rotate('+ (6*sec)+'deg)';
+        minDom.style.transform = 'rotate('+ (6*min)+'deg)';
+        hourDom.style.transform = 'rotate('+ (30*hour)+'deg)';
+    },1000);
+</script> 
+</html>  

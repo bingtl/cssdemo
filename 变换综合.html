@@ -1,0 +1,37 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style>  
+.box{
+    width: 200px;
+    height: 200px;
+    background: #999;
+    transform:translateX(200px) scale(0.5);
+    transform: rotate(45deg) scale(0.5);
+    transform: skew(45deg) scale(0.5) ;
+}
+.box2{
+    width: 200px;
+    height: 200px;
+    background: #666;
+    transform:scale(0.5) translateX(200px) ;
+    transform: scale(0.5) rotate(45deg) ;
+}
+    </style>  
+</head>  
+<body>  
+ <div class="box"></div>
+ <div class="box2"></div>
+</body>  
+</html>  
+<!-- 
+    scale 缩放
+    translateX  平移
+     skew   倾斜 扭曲
+
+scale 写在translateX之前，有影响，引动位置会根据缩放的大小距离产生变化
+scale 写在 rotate 之前 ，没有影响
+ skew 没影响
+ -->

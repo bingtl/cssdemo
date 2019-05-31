@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript上下滚动</title>
+	<style type="text/css">
+		*{margin:0;padding:0;list-style: none;text-decoration: none;}
+		#scrollTop{width:460px;height:30px;margin:0 auto;margin-top: 20px;margin-bottom:20px;}
+		#scrollTop a{display: inline-block;width:200px;height:30px;line-height: 30px;background:green;text-align: center;color:#fff;margin-left:20px;}
+		#scrollContent{width:500px;height:440px;border:1px solid red;margin:0 auto;overflow:hidden;position:relative;}
+		#scrollContent ul{width:100%;position:absolute;top:0;left:0;}
+		#scrollContent ul li{width:460px;height:80px;background:yellow;margin:0 auto;margin-top:10px;}
+	</style>
+</head>
+<body>
+	<div id="scroll">
+		<div id="scrollTop"><a href="javascript:;">向上滚动</a><a href="javascript:;">向下滚动</a></div>
+		<div id="scrollContent">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+
+		var scrollTop = document.getElementById("scrollTop");
+		var scrollContent = document.getElementById("scrollContent");
+		var contentUl = scrollContent.children[0];
+		var scrollTopUp = scrollTop.children[0];//向上滚动 
+		var scrollTopDown = scrollTop.children[1];//向下滚动 
+
+
+		var direction = -1;//方向 
+		var timer = null;//定义定时器
+		contentUl.innerHTML += contentUl.innerHTML;
+		setTimeout(move, 1000);//执行一次定时器
+
+
+		//向上滚动点击事件
+		scrollTopUp.onclick = function(){
+			clearInterval(timer);//清除定时器
+			direction = -1;//向上方向
+			move();//调用方法
+		}
+
+
+		// 向下滚动点击事件
+		scrollTopDown.onclick = function(){
+			clearInterval(timer);//清除定时器
+			direction = 1;//向下方向 
+			move();//调用方法
+		}
+
+
+		//滚动方法
+		function move(){
+			timer = setInterval(function(){
+				contentUl.style.top = contentUl.offsetTop + direction + 'px';
+				// console.log("获取当前元素到顶部的距离：" + contentUl.offsetTop);
+				// console.log("获取当前元素的高度：" + contentUl.offsetHeight);
+
+
+				//向上滚动小于当前元素高度的一半时，则执行如下操作
+				if(contentUl.offsetTop <= - contentUl.offsetHeight/2)
+				{
+					contentUl.style.top = 0;
+				}
+				//向下滚动大于0时，则执行如下操作
+				else if(contentUl.offsetTop >= 0)
+				{
+					contentUl.style.top = - contentUl.offsetHeight/2 + "px";
+				}
+			},30);
+		}
+		
+	</script>
+</body>
+</html>

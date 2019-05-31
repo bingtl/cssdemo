@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dv {
+            border: 2px solid red;
+            padding: 10px 40px;
+            /*圆角化*/
+            border-radius: 25px;
+            -moz-border-radius: 25px;
+        }
+
+        #dv2 {
+            width: 400px;
+            height: 200px;
+            margin-top: 10px;
+            background-color: orange;
+            /*基于原图 
+            第一个值向右偏离为正值
+            第二个值向下偏离为正值
+            第三个值为边框阴影的模糊程度
+            第四个值为边框阴影颜色     
+            */
+            -moz-box-shadow: 10px 10px 5px #888888;
+            /* 老的 Firefox */
+            box-shadow: 10px 10px 5px #888888
+        }
+
+        #dv3 {
+            border: 15px solid transparent;
+            width: 300px;
+            margin-top: 10px;
+            padding: 10px 20px;
+
+            -moz-border-image: url(images/border.png) 30 30 stretch;
+            /* Old Firefox */
+            -webkit-border-image: url(images/border.png) 30 30 stretch;
+            /* Safari and Chrome */
+            -o-border-image: url(images/border.png) 30 30 stretch;
+            /* Opera */
+            border-image: url(images/border.png) 30 30 stretch;
+        }
+
+        #dv4 {
+            border: 15px solid transparent;
+            width: 300px;
+            margin-top: 10px;
+            padding: 10px 20px;
+
+            -moz-border-image: url(images/border.png) 30 30 round;
+            /* Old Firefox */
+            -webkit-border-image: url(images/border.png) 30 30 round;
+            /* Safari and Chrome */
+            -o-border-image: url(images/border.png) 30 30 round;
+            /* Opera */
+            border-image: url(images/border.png) 30 30 round;
+        }
+
+        /* #dv5 {
+            margin-top: 10px;
+            color：red;
+            text-shadow: 5px 5px 5px #888888;
+        } */
+
+        /*使用自己自定义的字体*/
+
+        /* @font-face
+            {
+            font-family: myFirstFont;
+            src: url('Sansation_Light.ttf'),
+                 url('Sansation_Light.eot'); IE9+
+            }
+
+            div
+            {
+            font-family:myFirstFont;
+            } */
+
+        /*2d转换*/
+
+        #dv6 {
+            width: 200px;
+            height: 200px;
+            margin-top: 10px;
+            background-color: red;
+            transform: translate(50px, 50px) rotate(30deg) scale(2, 1) skew(30deg, 40deg);
+        }
+
+        /*3d转换*/
+
+        #dv7 {
+            width: 200px;
+            height: 200px;
+            margin-top: 100px;
+            background-color: blue;
+
+
+            transition: all 6s liner 1s;
+            -moz-transition: all 6s liner 1s;
+            -webkit-transition: all 6s liner 1s;
+            -o-transition: all 6s liner 1s;
+
+        }
+
+        #dv7:hover {
+
+            width: 400px;
+            height: 400px;
+            background-color: deeppink;
+
+            /*transform: translate(50px,50px) rotate(40deg) scale(1,1) skew(30deg,40deg);*/
+        }
+
+
+
+        /*动画*/
+
+        #dv8 {
+            width: 400px;
+            height: 400px;
+            animation: myfirst 5s;
+            -moz-animation: myfirst 5s;
+            /* Firefox */
+            -webkit-animation: myfirst 5s;
+            /* Safari and Chrome */
+            -o-animation: myfirst 5s;
+            /* Opera */
+            -webkit-animation-name: 'wobble';
+            /*动画属性名，也就是我们前面keyframes定义的动画名*/
+            -webkit-animation-duration: 10s;
+            /*动画持续时间*/
+            -webkit-animation-timing-function: ease-in-out;
+            /*动画频率，1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0).
+
+            2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0).
+
+            3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0).
+
+            4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0).
+
+            5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)
+            */
+            -webkit-animation-delay: 2s;
+            /*动画延迟时间*/
+            -webkit-animation-iteration-count: 10;
+            /*定义循环次数，infinite为无限次*/
+            -webkit-animation-direction: alternate;
+            /*定义动画方式 animation-direction是用来指定元素动画播放的方向，其只有两个值，默认值为normal，如果设置为normal时，动画的每次循环都是向前播放；另一个值是alternate，他的作用是，动画播放在第偶数次向前播放，第奇数次向反方向播放。著作权归作者所有。*/
+        }
+
+        /* animation:[<animation-name>|| <animation-duration>|| <animation-timing-function>|| <animation-delay>|| <animation-iteration-count>|| <animation-direction>] [,
+        [<animation-name>|| <animation-duration>|| <animation-timing-function>|| <animation-delay>|| <animation-iteration-count>|| <animation-direction>]] @keyframes myfirst {
+            0% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+            25% {
+                background: yellow;
+                left: 200px;
+                top: 0px;
+            }
+            50% {
+                background: blue;
+                left: 200px;
+                top: 200px;
+            }
+            75% {
+                background: green;
+                left: 0px;
+                top: 200px;
+            }
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        } */
+
+        @-moz-keyframes myfirst
+        /* Firefox */
+
+            {
+            0% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+            25% {
+                background: yellow;
+                left: 200px;
+                top: 0px;
+            }
+            50% {
+                background: blue;
+                left: 200px;
+                top: 200px;
+            }
+            75% {
+                background: green;
+                left: 0px;
+                top: 200px;
+            }
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+        @-webkit-keyframes myfirst
+        /* Safari 和 Chrome */
+
+            {
+            0% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+            25% {
+                background: yellow;
+                left: 200px;
+                top: 0px;
+            }
+            50% {
+                background: blue;
+                left: 200px;
+                top: 200px;
+            }
+            75% {
+                background: green;
+                left: 0px;
+                top: 200px;
+            }
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+        @-o-keyframes myfirst
+        /* Opera */
+
+            {
+            0% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+            25% {
+                background: yellow;
+                left: 200px;
+                top: 0px;
+            }
+            50% {
+                background: blue;
+                left: 200px;
+                top: 200px;
+            }
+            75% {
+                background: green;
+                left: 0px;
+                top: 200px;
+            }
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="dv"></div>
+    <div id="dv2"></div>
+    <div id="dv3"></div>
+    <div id="dv4"></div>
+    <div id="dv5">hello 世界</div>
+    <div id="dv6"></div>
+
+    <div id="dv7"></div>
+
+    <div id="dv8"></div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style>  
+  .baoguo{
+      position: relative;
+      margin: 80px auto;
+  }
+  .pingti{
+      position: absolute;
+      top: 10px;
+      left: 0;
+  }
+  .pingshen{
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+    </style>  
+</head>  
+<body>  
+ <div class="baoguo">
+    <div class="pingti">
+        <img src="./coke_bg.jpg" alt="">
+    </div>
+    <div class="pingshen">
+        <img src="./coke_can.png" alt="">
+    </div>
+ </div>
+</body> 
+<script type="text/javascript">
+    var wrap = document.getElementsByClassName('.baoguo') 
+    var tupian = document.querySelector('.pingshen img');
+    console.log(tupian)
+    var tupiankuan = tupian.offsetWidth;
+    //offsetWidth = content-box + padding-box + border-box
+    //clientWidth = content-box + padding-box
+    //box.style.width 赋值操作 上两个是读职操作
+console.log(tupiankuan)
+    var tupiangao = tupian.offsetHeight;
+    console.log(tupiangao)
+    wrap.style.width = tupiankuan + 'px';
+    wrap.style.height = tupiangao + 'px';
+</script> 
+</html>  
